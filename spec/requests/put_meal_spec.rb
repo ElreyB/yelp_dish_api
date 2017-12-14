@@ -5,7 +5,6 @@ require 'rails_helper' do
 
     describe do
       @meal = FactoryBot.create(:meal)
-      @meal.reload
     end
 
     it "retunrs a sucess response" do
