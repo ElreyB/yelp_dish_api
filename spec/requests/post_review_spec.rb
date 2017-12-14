@@ -4,7 +4,7 @@ describe "post a review route" do
   let!(:meal) { FactoryBot.create(:meal) }
 
   before do
-    post "/api/v1/meals/#{meal.id}/reviews", params: { author: 'Test Author', content: "Test Content"}, headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}
+    post "/api/v1/meals/#{meal.id}/reviews", params: { author: 'Test Author', content: "Test Content"}, headers: {Authorization: ENV['YELP_API_KEY']}
   end
 
   it 'returns the review author' do

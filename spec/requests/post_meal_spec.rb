@@ -3,12 +3,12 @@ require 'rails_helper'
   describe "post a meal route", :type => :request do
 
     it "returns error response when fields are left blank" do
-      post '/api/v1/meals', params: { dish: "", drink: "", rating: nil}, headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}
+      post '/api/v1/meals', params: { dish: "", drink: "", rating: nil}, headers: {Authorization: ENV['YELP_API_KEY']}
       expect(response).to have_http_status(422)
     end
 
     before do
-      post '/api/v1/meals', params: { :dish => "Test Dish", :drink => "Test Drink", :rating => 5}, headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}
+      post '/api/v1/meals', params: { :dish => "Test Dish", :drink => "Test Drink", :rating => 5}, headers: {Authorization: ENV['YELP_API_KEY']}
     end
 
     it "returns the meal's dish" do

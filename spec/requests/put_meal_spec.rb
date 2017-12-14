@@ -8,7 +8,7 @@ require 'rails_helper' do
     end
 
     it "retunrs a sucess response" do
-      put "/api/v1/meals/#{@meal.id}", params: {:dish => "New Dish"}, headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}
+      put "/api/v1/meals/#{@meal.id}", params: {:dish => "New Dish"}, headers: {Authorization: ENV['YELP_API_KEY']}
       expect(response).to have_http_status(200)
     end
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "get all meals route", :type => :request do
   let!(:meals) { FactoryBot.create_list(:meal, 20) }
 
-  before { get '/api/v1/meals', headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}}
+  before { get '/api/v1/meals', headers: {Authorization: ENV['YELP_API_KEY']}}
 
   it "returns all meals in one page" do
     expect(JSON.parse(response.body).size).to eq 5
@@ -18,7 +18,7 @@ end
 describe "returns meal specified by meal id", :type => :request do
   let!(:meals) { FactoryBot.create(:meal) }
 
-  before { get "/api/v1/meals/#{meals.id}", headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}}
+  before { get "/api/v1/meals/#{meals.id}", headers: {Authorization: ENV['YELP_API_KEY']}}
 
   it "returns one meal matching meal id" do
     expect(JSON.parse(response.body).size).to eq 4
