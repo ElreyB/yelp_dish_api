@@ -3,6 +3,18 @@ class Api::V1::MealsController < ApplicationController
 
   def index
     @meals = Meal.paginate(:page => params[:page], :per_page => 5)
+    dish = params[:dish]
+    rating = params[:rating]
+    drink = params[:drink]
+    if dish
+      @meals = Meal.search_by_dish(dish)
+    end
+    if rating
+      @meals = Meal.search_by_rating(rating)
+    end
+    if drink
+      @meals = Meal.search_by_drink(drink)
+    end
     json_response(@meals)
   end
 
