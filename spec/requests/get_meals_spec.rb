@@ -20,7 +20,7 @@ describe "returns meal specified by meal id", :type => :request do
 
   before { get "/api/v1/meals/#{meals.id}", headers: {Authorization: 'Basic bmFtZTpwYXNzd29yZA=='}}
 
-  it "returns one meal mathing meal id" do
+  it "returns one meal matching meal id" do
     expect(JSON.parse(response.body).size).to eq 4
   end
 
